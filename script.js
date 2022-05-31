@@ -20,9 +20,6 @@ let myLibrary = [{
     read: "yes"
 }];
 
-
-
-
 function Book(title, author, dateWritten, pageCount, read) {
   // the constructor...
   this.title = title;
@@ -43,29 +40,16 @@ function addBookToLibrary() {
   myLibrary.push(book);
 }
 
-function createTable(){
-    let bookTable = document.createElement("table");
-    document.body.appendChild(bookTable);
-    var orderArrayHeader = ["Title", "Author", "Date Written", "Page Count"];
-    let thead = document.createElement("thead");
-    bookTable.appendChild(thead);
-    //iterate through header array
-    orderArrayHeader.forEach((header) => {
-        thead.appendChild(document.createElement("th")).
-          appendChild(document.createTextNode(header));
-    });
+function createCardStack(){
+    let cardContainer = document.querySelector(".card-container");
     myLibrary.forEach ((book) => {
-        let row = bookTable.insertRow(0);
-        let title = row.insertCell(0); 
-        let author = row.insertCell(1); 
-        let dateWritten = row.insertCell(2); 
-        let pageCount = row.insertCell(3); 
-        let read = row.insertCell(4);
-        //fill cells
-        title.textContent = book.title; 
-        author.textContent = book.author; 
-        dateWritten.textContent = book.dateWritten; 
-        pageCount.textContent = book.pageCount; 
-        read.textContent = book.read;
+        let card = document.createElement("div");
+        card.classList.add("card");
+        for (key in book){
+            card.appendChild(document.createElement("p")).appendChild(document.createTextNode(book[key]));
+        }
+        console.log(card);
+        cardContainer.appendChild(card); 
     });
+
 }
