@@ -41,6 +41,7 @@ function addBookToLibrary() {
 }
 
 function createCardStack(){
+    let mainContainer = document.querySelector(".main-container");
     let cardContainer = document.querySelector(".card-container");
     myLibrary.forEach ((book) => {
         let card = document.createElement("div");
