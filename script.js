@@ -1,3 +1,20 @@
+let addBookButton = document.querySelector(".addBookButton");
+addBookButton.addEventListener('click', openForm);
+
+let inFormButton = document.querySelector(".inFormButton");
+inFormButton.addEventListener('click', event => {
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let date = document.getElementById("date").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("title").value;
+    addBookToLibrary(title, author, date, pages, read);
+    document.querySelector(".form-container").reset();
+    closeForm();
+    createCardStack()
+});
+
+
 let myLibrary = [{
     title: "title1",
     author: "author1",
@@ -29,13 +46,7 @@ function Book(title, author, dateWritten, pageCount, read) {
   this.read = read;
 }
 
-function addBookToLibrary() {
-  // do stuff here
-  let title = prompt("title"); 
-  let author = prompt("author"); 
-  let dateWritten = prompt("date written"); 
-  let pageCount = prompt("page count"); 
-  let read = prompt("have you read this already?"); 
+function addBookToLibrary(title, author, dateWritten, pageCount, read) {
   let book = new Book(title, author, dateWritten, pageCount, read);
   myLibrary.push(book);
 }
@@ -43,6 +54,7 @@ function addBookToLibrary() {
 function createCardStack(){
     let mainContainer = document.querySelector(".main-container");
     let cardContainer = document.querySelector(".card-container");
+    cardContainer.textContent = ""; //clear container to render a fresh stack each time
     myLibrary.forEach ((book) => {
         let card = document.createElement("div");
         card.classList.add("card");
@@ -53,4 +65,12 @@ function createCardStack(){
         cardContainer.appendChild(card); 
     });
 
+}
+
+function closeForm() {
+    document.getElementById("bookForm").style.display = "none";
+}
+
+function openForm() {
+    document.getElementById("bookForm").style.display = "block";;
 }

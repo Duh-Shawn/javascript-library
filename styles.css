@@ -14,3 +14,17 @@ body{
     outline: solid black;
 
 }
+
+/* Form hidden by default */
+.form-popup {
+    display: none;
+  }
+
+#bookForm{
+    
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+}
