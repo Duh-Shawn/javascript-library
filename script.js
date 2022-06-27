@@ -61,7 +61,10 @@ function createCardStack(){
         for (key in book){
             card.appendChild(document.createElement("p")).appendChild(document.createTextNode(book[key]));
         }
-        console.log(card);
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("deleteBookButton");
+        deleteButton.textContent = "Remove";
+        card.appendChild(deleteButton);
         cardContainer.appendChild(card); 
     });
 
