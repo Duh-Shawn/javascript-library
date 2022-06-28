@@ -15,7 +15,6 @@ inFormButton.addEventListener('click', event => {
 });
 
 let myLibrary = [
-
 ];
 
 function Book(title, author, dateWritten, pageCount, read) {
@@ -28,10 +27,18 @@ function Book(title, author, dateWritten, pageCount, read) {
   this.dataIndex = undefined;
 }
 
+Book.prototype.toggleRead = function() {
+    if (this.read === "Y"){
+        this.read = "N";
+    }
+    else{
+        this.read = "Y";
+    }
+}
+
 function addBookToLibrary(title, author, dateWritten, pageCount, read) {
   let book = new Book(title, author, dateWritten, pageCount, read);
   myLibrary.push(book);
-
 }
 
 function createCardStack(){
@@ -43,23 +50,31 @@ function createCardStack(){
         let card = document.createElement("div");
         card.classList.add("card");
         for (key in book){  
-            if (key !== "dataIndex"){
+            if (key !== "dataIndex" && key !== "toggleRead"){
                 let element = document.createElement("p");
                 element.appendChild(document.createTextNode(book[key]));
                 if (key === "title"){
                     element.classList.add("title");
                 }
                 card.appendChild(element);
-            }     
-            
+            }         
         }
+        //add delete button
         let deleteBookCardButton = document.createElement("button");
         deleteBookCardButton.classList.add("deleteBookCardButton");
         deleteBookCardButton.textContent = "Remove";
         deleteBookCardButton.addEventListener('click', removeBookCard);
         card.appendChild(deleteBookCardButton);
-        cardContainer.appendChild(card);
-        
+        //add toggle read button
+        let toggleReadCardButton = document.createElement("button");
+        toggleReadCardButton.classList.add("toggleReadCardButton");
+        toggleReadCardButton.textContent = "Read";
+        toggleReadCardButton.addEventListener('click', () => {
+            book.toggleRead();
+            createCardStack();
+        });
+        card.appendChild(toggleReadCardButton);
+        cardContainer.appendChild(card);  
     }); 
 }
 
