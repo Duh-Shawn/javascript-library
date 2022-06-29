@@ -1,27 +1,18 @@
-
-
 let addBookButton = document.querySelector(".addBookButton");
 addBookButton.addEventListener('click', openForm);
 
-let inFormButton = document.querySelector(".inFormButton");
-inFormButton.addEventListener('click', event => {
-    let title = document.getElementById("title").value;
-    let author = document.getElementById("author").value;
-    let date = document.getElementById("date").value;
-    let pages = document.getElementById("pages").value;
-    let read = document.getElementById("read").value;
-    addBookToLibrary(title, author, date, pages, read);
-    document.querySelector(".form-container").reset();
-    closeForm();
-    createCardStack()
-});
+let formContainer = document.querySelector(".formContainer");
+formContainer.addEventListener('submit', formSubmit);
+
+let closeFormButton = document.querySelector(".closeFormButton");
+closeFormButton.addEventListener('click', closeForm);
 
 let myLibrary = [
-    {title: 'test1', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    {title: 'test2', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    {title: 'test3', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    {title: 'test4', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    {title: 'test5', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
+    // {title: 'test1', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
+    // {title: 'test2', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
+    // {title: 'test3', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
+    // {title: 'test4', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
+    // {title: 'test5', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
 ];
 
 function Book(title, author, dateWritten, pageCount, read) {
@@ -49,8 +40,8 @@ function addBookToLibrary(title, author, dateWritten, pageCount, read) {
 }
 
 function createCardStack(){
-    let mainContainer = document.querySelector(".main-container");
-    let cardContainer = document.querySelector(".card-container");
+    let mainContainer = document.querySelector(".mainContainer");
+    let cardContainer = document.querySelector(".cardContainer");
     cardContainer.textContent = ""; //clear container to render a fresh stack each time
     myLibrary.forEach ((book, index) => {
         book.dataIndex = index; //set the object data attribute to value of array index in real time
@@ -91,6 +82,19 @@ function closeForm() {
 
 function openForm() {
     document.getElementById("bookForm").style.display = "block";;
+}
+
+//helper method for add book form submission
+function formSubmit(){
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let date = document.getElementById("date").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.getElementById("read").value;
+    addBookToLibrary(title, author, date, pages, read);
+    document.querySelector(".formContainer").reset();
+    closeForm();
+    createCardStack()
 }
 
 function removeBookCard(event) {
