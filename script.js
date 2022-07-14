@@ -8,11 +8,6 @@ let closeFormButton = document.querySelector(".closeFormButton");
 closeFormButton.addEventListener('click', closeForm);
 
 let myLibrary = [
-    // {title: 'test1', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    // {title: 'test2', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    // {title: 'test3', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    // {title: 'test4', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
-    // {title: 'test5', author: 'test1', dateWritten: 1942, pageCount: 199, read: 'Y'},
 ];
 
 function Book(title, author, dateWritten, pageCount, read) {
