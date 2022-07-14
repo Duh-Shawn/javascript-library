@@ -8,6 +8,7 @@ let closeFormButton = document.querySelector(".closeFormButton");
 closeFormButton.addEventListener('click', closeForm);
 
 let myLibrary = [
+    
 ];
 
 function Book(title, author, dateWritten, pageCount, read) {
